@@ -1,0 +1,128 @@
+package roster;
+import java.util.Scanner; // gets user input
+
+public class roster {
+    public static void main(String[] args) { // main method
+        String tmpStr; //placeholder variable
+        int switchInput; //placeholder variable
+        nameSort nameSortObject = new nameSort();
+        gradeSort gradeSortObject = new gradeSort();
+        int tmpInt; //placeholder variable
+        int grade[] = new int[5]; // integer array to hold grades
+        String lastName[] = new String[5]; // string array to hold names
+        Scanner input = new Scanner(System.in); // accepts user input
+        int x; // temp variable for use in loop
+        for(x = 0; x < lastName.length; x++){  // for loop for getting the students names, stopping at the length of the array.
+            System.out.println("Enter the student's name:");
+            lastName[x] = input.nextLine(); 
+            }
+        for(x = 0; x < grade.length; x++){  // for loop for getting the students grades, stopping at the length of the array.
+            System.out.println("Enter " + lastName[x] + "'s grade:");
+            grade[x] = input.nextInt();
+            }
+                /* System.out.println("NAME" + "    " + "GRADE"); // builds the first level of the roster rable
+        for(x = 0; x < grade.length; x++){  // for loop to test the display the student's entered name and then the grade
+            System.out.println(lastName[x] + "    " + grade[x]);
+            } **/    // temporary loop to display the information that was entered.
+        System.out.println("How would you like to sort the roster?");
+        System.out.println();
+        System.out.println("To sort by name, enter '1':");
+        System.out.println("To sort by grade, enter '2':");
+        System.out.println("To quit, enter '3':");
+        switchInput = input.nextInt();
+            switch (switchInput) // using the int variable to hold case options.
+            {
+            case 1:
+                for(int z = 0; z < lastName.length - 1; z++) // loops to sort and display the roster in order of name
+                {
+                    for(int i = 0; i < lastName.length -1; i++)
+                        if(lastName[i].compareTo(lastName[i + 1]) >0 )
+                            {
+                            tmpStr = lastName[i];
+                            tmpInt = grade[i];
+                            lastName[i] = lastName[i + 1];
+                            grade[i] = grade[i + 1];
+                            lastName[i + 1] = tmpStr;
+                            grade[i + 1] = tmpInt;
+                            }
+                }
+                System.out.printf("%-15s %s \n", "Name","Grade"); // puts name and grade at the top of the table
+            for(int y = 0; y < lastName.length; y++)
+                     {
+                         System.out.printf("%-15s %s \n", lastName[y],grade[y]); // formats the table for ease of reading
+                     }
+                break;
+            case 2:
+                 for(int z = 0; z < grade.length - 1; z++) { // loops to bubble sort by grades
+                        for(int i = 0; i < grade.length -1; i++)
+                            if(grade[i] < grade[i + 1] ) {
+                                tmpInt = grade[i];
+                                tmpStr = lastName[i];
+                                grade[i] = grade[i + 1];
+                                lastName[i] = lastName[i + 1];
+                                grade[i + 1] = tmpInt;
+                                lastName[i + 1] = tmpStr;
+                                }
+                 }
+                        System.out.printf("%-15s %s \n", "Name","Grade"); // puts name and grade at the top of the table
+            for(int y = 0; y < grade.length; y++)
+                     {
+                         System.out.printf("%-15s %s \n", lastName[y],grade[y]); // formats the table for ease of reading
+                      }
+                break;
+            case 3: // exit condition
+                System.out.println("GoodBye.");
+                break;
+            default: // exit condition
+                System.out.println("GoodBye.");
+                break;
+            }
+         }
+    }
+
+        
+package roster;
+
+public class nameSort extends roster{
+    public void displayRoster() {
+        for(int z = 0; z < lastName.length - 1; z++)
+            {
+                for(int i = 0; i < lastName.length -1; i++)
+                    if(lastName[i].compareTo(lastName[i + 1]) >0 )
+                        {
+                        tmpStr = lastName[i];
+                        tmpInt = grade[i];
+                        lastName[i] = lastName[i + 1];
+                        grade[i] = grade[i + 1];
+                        lastName[i + 1] = tmpStr;
+                        grade[i + 1] = tmpInt;
+                        }
+            }
+        for(int y = 0; y < lastName.length; y++)
+                 {
+                     System.out.printf("%-15s %s \n", lastName[y],grade[y]);
+                 }
+             }   
+         }
+
+package roster;
+
+public class gradeSort extends roster{
+    public void displayRoster() {
+     for(int z = 0; z < grade.length - 1; z++) {
+            for(int i = 0; i < grade.length -1; i++)
+                if(grade[i] < grade[i + 1] ) {
+                    tmpStr = lastName[i];
+                    tmpInt = grade[i];
+                    lastName[i] = lastName[i + 1];
+                    grade[i] = grade[i + 1];
+                    lastName[i + 1] = tmpStr;
+                    grade[i + 1] = tmpInt;
+                    }
+            for(int y = 0; y < lastName.length; y++)
+             {
+                 System.out.printf("%-15s %s \n", lastName[y],grade[y]);
+     }
+}
+}
+}
